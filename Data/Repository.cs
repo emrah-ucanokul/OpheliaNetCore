@@ -18,13 +18,13 @@ namespace Ophelia.Data
         {
             return this.SaveChanges(entity, true);
         }
-        public bool SaveChanges(object entity, bool runBeforeUpdateProcesseses)
+        public bool SaveChanges(object entity, bool runBeforeUpdateProcesseses, bool isFromTransfer = false)
         {
             var tracker = (entity.GetPropertyValue("Tracker") as PocoEntityTracker);
             if (tracker != null && (tracker.HasChanged || tracker.IsNewRecord()))
             {
                 int effectedRowCount = 0;
-                if (!tracker.IsNewRecord())
+                if (!tracker.IsNewRecord() && !isFromTransfer)
                 {
                     tracker?.OnBeforeUpdateEntity(runBeforeUpdateProcesseses);
                     effectedRowCount = this.Context.CreateUpdateQuery(entity).Execute<int>();
