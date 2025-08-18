@@ -23,6 +23,8 @@ namespace Ophelia.Data.Model
             }
         }
 
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long ID { get { return this.GetValue(op => op.ID); } set { this.SetValue(op => op.ID, value); } }
 
         [DataProperty(255)]

@@ -24,6 +24,7 @@ namespace Ophelia.Data
             if (tracker != null && (tracker.HasChanged || tracker.IsNewRecord()))
             {
                 int effectedRowCount = 0;
+                // if (!tracker.IsNewRecord())
                 if (!tracker.IsNewRecord() && !isFromTransfer)
                 {
                     tracker?.OnBeforeUpdateEntity(runBeforeUpdateProcesseses);
